@@ -35,6 +35,7 @@ class SecondViewController: UIViewController {
 			}
 		}
 		OutputText.text = ""
+		redeemInventory = [:]
 	}
 	
 	@IBOutlet weak var OutputText: UILabel!
@@ -58,37 +59,38 @@ class SecondViewController: UIViewController {
 
 	func redeem(){
 		//todo prioritize picking 
-				var Total = TotalAmount;
-				// Sort and keep the array.
+		var Total = TotalAmount;
 		redeemInventory = [:]
 		var tempInventory = CouponInventory
-		while(Total > 5){
+		var Attempts = 0;
+		while(Total > 5 && Attempts < 5){
+			Attempts += 1
 			var SortedInventory = tempInventory.sorted(by: {(a,b) in 
 									a.key > b.key; });
 
-				for(key, value) in SortedInventory{
-					if(Total < 5) { break; } 
-					
-					print(key , " " , value);
-					
-					var Count = Total / key
-					
-					while(Count > value / 2){
-						Count = Count / 2; // reduce to keep 
-					}
-					
-					if(Count == 0){ continue; }
-					
-					Total = Total - ( Count * key )
-					
-					if(redeemInventory[key] != nil){
-						redeemInventory[key] = redeemInventory[key]! + Count;
-					}
-					else{
-						redeemInventory[key] = Count;
-					}
-					tempInventory[key] = tempInventory[key]! - Count
+			for(key, value) in SortedInventory{
+				if(Total < 5) { break; } 
+				
+				print(key , " " , value);
+				
+				var Count = Total / key
+				
+				while(Count > value / 2){
+					Count = Count / 2; // reduce to keep 
 				}
+				
+				if(Count == 0){ continue; }
+				
+				Total = Total - ( Count * key )
+				
+				if(redeemInventory[key] != nil){
+					redeemInventory[key] = redeemInventory[key]! + Count;
+				}
+				else{
+					redeemInventory[key] = Count;
+				}
+				tempInventory[key] = tempInventory[key]! - Count
+			}
 		}
 		
 		print("total : \(Total)")
