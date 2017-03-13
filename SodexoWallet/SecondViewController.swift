@@ -13,14 +13,28 @@ class SecondViewController: UIViewController {
 	//Debug placeholder coupon inventory until the actual inventory gets ready.
 	
 	var CouponInventory: [UInt32:UInt32] = [:]
-	
+	var redeemInventory: [UInt32:UInt32] = [:]
+
 	
 	// debug ends
 	
 	var TotalAmount:UInt32 = 0;
-	@IBOutlet weak var AmountTextField: UITextField!
-	@IBAction func PayButtonClick(_ sender: UIButton, forEvent event: UIEvent) {
+	@IBAction func CalculateButtonClick(_ sender: UIButton, forEvent event: UIEvent) {
 		SetTotalAmount();
+	}
+	@IBOutlet weak var AmountTextField: UITextField!
+	
+	@IBAction func PayButtonClick(_ sender: UIButton, forEvent event: UIEvent) {
+		for(key, value) in redeemInventory{
+			CouponInventory[key] = CouponInventory[key]! - value;
+			if CouponInventory[key]! == 0{
+				CouponInventory.removeValue(forKey: key)
+			}
+			else{
+				print("\(key) - \(CouponInventory[key]!)")
+			}
+		}
+		OutputText.text = ""
 	}
 	
 	@IBOutlet weak var OutputText: UILabel!
@@ -29,7 +43,7 @@ class SecondViewController: UIViewController {
 	}
 	
 	@IBAction func AmountTextEditingEnded(_ sender: UITextField, forEvent event: UIEvent) {
-			SetTotalAmount();
+		SetTotalAmount();
 	}
 	 
 	func SetTotalAmount(){
@@ -40,38 +54,52 @@ class SecondViewController: UIViewController {
 	
 
 	}
-	
+
+
 	func redeem(){
 		//todo prioritize picking 
 				var Total = TotalAmount;
-		var redeemInventory:[UInt32:UInt32] = [:]
-		// Sort and keep the array.
-		while(Total > 0){
-		var SortedInventory = CouponInventory.sorted(by: {(a,b) in 
-								a.key > b.key; });
+				// Sort and keep the array.
+		redeemInventory = [:]
+		var tempInventory = CouponInventory
+		while(Total > 5){
+			var SortedInventory = tempInventory.sorted(by: {(a,b) in 
+									a.key > b.key; });
 
-			for(key, value) in SortedInventory{
-				if(Total < 5) { break; } 
-				print(key , " " , value);
-				var Count = Total / key
-				if(Count > value / 2){
-					Count = Count / 2; // reduce to keep 
+				for(key, value) in SortedInventory{
+					if(Total < 5) { break; } 
+					
+					print(key , " " , value);
+					
+					var Count = Total / key
+					
+					while(Count > value / 2){
+						Count = Count / 2; // reduce to keep 
+					}
+					
+					if(Count == 0){ continue; }
+					
+					Total = Total - ( Count * key )
+					
+					if(redeemInventory[key] != nil){
+						redeemInventory[key] = redeemInventory[key]! + Count;
+					}
+					else{
+						redeemInventory[key] = Count;
+					}
+					tempInventory[key] = tempInventory[key]! - Count
 				}
-				Total = Total - ( Count * key )
-				if(redeemInventory[key] != nil){
-					redeemInventory[key] = redeemInventory[key]! + Count;
-				}
-				else{
-					redeemInventory[key] = Count;
-				}
-				CouponInventory[key] = CouponInventory[key]! - Count;
-				print("final : \(Count)")
-				print("total : \(Total)")
-			}
 		}
 		
 		print("total : \(Total)")
-
+		OutputText.text = "";
+		for(key, value) in  redeemInventory{
+			print("\(key) - \(value)");
+			OutputText.text = OutputText.text! + "\(key) X \(value)\n";
+		}
+		if(Total > 0){
+			OutputText.text = OutputText.text! + "cash - \(Total)"
+		}
 	}
 	
 	override func viewDidLoad() {
