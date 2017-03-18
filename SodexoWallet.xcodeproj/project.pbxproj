@@ -509,6 +509,7 @@
 				D1729D8E1E64160A009973BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D1729D8F1E64160A009973BA /* Build configuration list for PBXNativeTarget "SodexoWalletTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +518,7 @@
 				D1729D911E64160A009973BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D1729D921E64160A009973BA /* Build configuration list for PBXNativeTarget "SodexoWalletUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +527,7 @@
 				D1729D941E64160A009973BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
