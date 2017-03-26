@@ -19,9 +19,14 @@ class SecondViewController: UIViewController {
 	// debug ends
 	
 	var TotalAmount:UInt32 = 0;
+	@IBOutlet weak var CurrentWorthLabel: UILabel! // Displays the current remaining total amount calculated from all the coupons available for the user. This would help user guess how much more they could use from their coupons.
+		
+	
+	//This action function is needed
 	@IBAction func CalculateButtonClick(_ sender: UIButton, forEvent event: UIEvent) {
 		SetTotalAmount();
 	}
+	
 	@IBOutlet weak var AmountTextField: UITextField!
 	
 	@IBAction func PayButtonClick(_ sender: UIButton, forEvent event: UIEvent) {
@@ -36,23 +41,40 @@ class SecondViewController: UIViewController {
 		}
 		OutputText.text = ""
 		redeemInventory = [:]
+		displayCurrentWorth() // Recalculate total remaining amount and display to user.
 	}
 	
-	@IBOutlet weak var OutputText: UILabel!
-	@IBAction func AmountTextValueChanged(_ sender: Any) {
-		SetTotalAmount()
+	func displayCurrentWorth()
+	{
+		var Total : UInt32 = 0
+		for(key, value) in CouponInventory{
+			Total += (key * value)
+		}
+		
+		CurrentWorthLabel.text = "Current worth: \(Total)"
 	}
 	
-	@IBAction func AmountTextEditingEnded(_ sender: UITextField, forEvent event: UIEvent) {
-		SetTotalAmount();
-	}
+	@IBOutlet weak var OutputText: UILabel!	
 	 
 	func SetTotalAmount(){
-		if let t = AmountTextField.text, t != "", let amount = UInt32(t)  {
-			TotalAmount = amount;				
-			redeem();
+		// UInt32() cast handles negative values. Hence control will not enter the if condition block
+		if let t = AmountTextField.text{
+			if t != ""{
+				if let amount = UInt32(t)  {
+					TotalAmount = amount;				
+					redeem();
+				}
+				else
+				{
+					OutputText.text = "Enter valid amount"
+				}
+			}
+			else
+			{
+				OutputText.text = "Enter amount"
+			}
 		}
-	
+			
 
 	}
 
@@ -70,17 +92,16 @@ class SecondViewController: UIViewController {
 
 			for(key, value) in SortedInventory{
 				if(Total < 5) { break; } 
-				
-				print(key , " " , value);
-				
+				if(value == 0){ continue; }
+
 				var Count = Total / key
 				
-				while(Count > value / 2){
+				while(Count > value / 2 && Count != 1){
 					Count = Count / 2; // reduce to keep 
 				}
 				
 				if(Count == 0){ continue; }
-				
+								
 				Total = Total - ( Count * key )
 				
 				if(redeemInventory[key] != nil){
@@ -92,27 +113,72 @@ class SecondViewController: UIViewController {
 				tempInventory[key] = tempInventory[key]! - Count
 			}
 		}
-		
 		print("total : \(Total)")
+		
+		if(Total == TotalAmount && CouponInventory.count > 0)
+		{
+			//Try to pay with the higher value coupon available and then inform that the balance they have to get back is such and such amount
+			for(key, value) in tempInventory.sorted(by: {(a,b) in a.key > b.key; }) {
+				if Total < key && value > 0 {
+					Total = key - Total // Use one coupon
+					redeemInventory[key] = 1;
+					break;
+				}
+			}
+			displayCouponsToRedeem("change you should get - \(Total)", Total : Total)
+		}
+		else{
+			//Else the user has to pay extra cash. verify that and display.
+			if verifyCalculation(Total) {
+				displayCouponsToRedeem("cash you owe - \(Total)", Total : Total);
+			}
+			else
+			{
+				print("Error: calculation is wrong. recalculate");
+			}
+		}		
+	}
+	
+	// Displays the coupons that user can use to pay the amount
+	func displayCouponsToRedeem(_ cash : String, Total : UInt32){
 		OutputText.text = "";
+				
 		for(key, value) in  redeemInventory{
-			print("\(key) - \(value)");
 			OutputText.text = OutputText.text! + "\(key) X \(value)\n";
 		}
 		if(Total > 0){
-			OutputText.text = OutputText.text! + "cash - \(Total)"
+			OutputText.text = OutputText.text! + cash;
+		}
+
+	}
+	
+	//Verifies the calculated coupons to redeem. Does not display to user. Internal calculation only.
+	func verifyCalculation(_ TotalRemaining : UInt32) -> Bool{
+		var CalculatedTotal : UInt32 = 0
+		for(key, value) in  redeemInventory{
+				CalculatedTotal += (key * value)
+		}
+		CalculatedTotal += TotalRemaining;
+		if(CalculatedTotal == TotalAmount){
+			return true;
+		}
+		else{
+			return false;
 		}
 	}
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		//debug
-		debugAddCoupon(25, CouponCount: 10);
-		debugAddCoupon(5, CouponCount: 50);
-		debugAddCoupon(10, CouponCount: 20);
-		debugAddCoupon(25, CouponCount: 20);
-		debugAddCoupon(50, CouponCount: 40);
+		debugAddCoupon(25, CouponCount: 1);
+		debugAddCoupon(5, CouponCount: 5);
+	//	debugAddCoupon(10, CouponCount: 20);
+//		debugAddCoupon(25, CouponCount: 20);
+//		debugAddCoupon(50, CouponCount: 40);
+		debugAddCoupon(50, CouponCount: 4);
+		displayCurrentWorth() // Display remaining amount so user can make educated guess if they want.
 		
 	}
 

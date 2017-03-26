@@ -86,7 +86,7 @@
                                     <action selector="CalculateButtonClick:forEvent:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="MpI-oQ-1ki"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="20" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="TxD-Uu-9RM">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="20" minimumFontSize="10" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TxD-Uu-9RM">
                                 <rect key="frame" x="69" y="360" width="258" height="217"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,7 +95,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQB-zK-zjZ">
-                                <rect key="frame" x="157" y="580" width="94" height="30"/>
+                                <rect key="frame" x="103" y="585" width="94" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.090965181000000006" green="0.48526508130000001" blue="0.51316406250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -109,12 +109,21 @@
                                     <action selector="PayButtonClick:forEvent:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="D22-Cy-dPi"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="Current Worth: " textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="DOO-Xq-Bsd">
+                                <rect key="frame" x="205" y="576" width="128" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Pay" image="second" id="cPa-gy-q4n"/>
                     <connections>
                         <outlet property="AmountTextField" destination="8qT-yH-4Kt" id="SbU-Cq-rjj"/>
+                        <outlet property="CurrentWorthLabel" destination="DOO-Xq-Bsd" id="gHG-8Y-sBd"/>
                         <outlet property="OutputText" destination="TxD-Uu-9RM" id="WLg-rg-gx9"/>
                     </connections>
                 </viewController>
