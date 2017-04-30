@@ -11,27 +11,10 @@ import UIKit
 class FirstViewController: UIViewController {
     
     @IBOutlet weak var totalAmount: UILabel!
-    
-    @IBOutlet weak var tenCountAmount: UILabel!
-    @IBOutlet weak var twentyCountAmount: UILabel!
-    @IBOutlet weak var thirtyFiveCountAmount: UILabel!
-    @IBOutlet weak var fiftyCountAmount: UILabel!
-    
-    @IBOutlet weak var tenCount: UITextField?
-    @IBOutlet weak var twentyCount: UITextField?
-    @IBOutlet weak var thirtyFiveCount: UITextField?
-    @IBOutlet weak var fiftyCount: UITextField?
-    
-    
+    @IBOutlet weak var walletTableView: UITableView!
     
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
-        tenCount?.delegate = self
-        twentyCount?.delegate = self
-        thirtyFiveCount?.delegate = self
-        fiftyCount?.delegate = self
-        
         resetAllFields()
         
        // var walletAmount: [[String: AnyObject]]
@@ -57,10 +40,6 @@ class FirstViewController: UIViewController {
     // ToDo: Calculate the individual total to be shown
     func printAmount() {
        // value = type * count , ex: 30 = 10*3
-        tenCountAmount.text = "\(10 * 5)"
-        twentyCountAmount.text = "\(20 * 5)"
-        thirtyFiveCountAmount.text = "\(35*5)"
-        fiftyCountAmount.text = "\(50*5)"
     }
 
     // ToDo: Calculate the total amount to be shown
@@ -69,23 +48,16 @@ class FirstViewController: UIViewController {
     }
 
     // ToDo: Save the total amount to Wallet
-//    func saveAmount() {
+    func saveAmount() {
 //        walletAmount = [["couponName":"10","couponCount":5],
 //                        ["couponName":"20","couponCount":15],
 //                        ["couponName":"35","couponCount":15],
 //                        ["couponName":"50","couponCount":10]]
-//    }
+   }
     
     
     func resetAllFields() {
-        tenCount?.text = ""
-        twentyCount?.text = ""
-        thirtyFiveCount?.text = ""
-        fiftyCount?.text = ""
-        tenCountAmount.text = "0.0"
-        twentyCountAmount.text = "0.0"
-        thirtyFiveCountAmount.text = "0.0"
-        fiftyCountAmount.text = "0.0"
+       //reset the Wallet table view
         totalAmount.text = "0.0"
     }
     
@@ -98,4 +70,35 @@ extension FirstViewController : UITextFieldDelegate {
         return true
     }
 
+}
+
+// MARK: - UITableViewDelegate
+extension FirstViewController : UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+// MARK: - UITableViewDataSource
+extension FirstViewController : UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      return 4
+        //couponName count
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
+                                                 for: indexPath) as! WalletViewCell
+        
+        //coupon name
+        //coupon count
+        //coupon amount
+         cell.couponName?.text = "Section \(indexPath.section) Row \(indexPath.row)"
+//        let row = indexPath.row
+//        cell.couponName.text = walletItems.couponName[row] //denomination
+//        cell.couponCount.text = walletItems.couponCount[row] //count
+//        cell.couponAmount.text = walletItems.couponAmount[row]
+        
+        return cell
+    }
 }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5015F3771EA1FA170057D3FC /* Wallet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5015F3761EA1FA170057D3FC /* Wallet.plist */; };
+		5015F3791EA1FB7B0057D3FC /* WalletUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015F3781EA1FB7B0057D3FC /* WalletUtility.swift */; };
+		5015F3851EA200EA0057D3FC /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5015F3841EA200EA0057D3FC /* WalletModel.swift */; };
+		5032DE181EB5FA8D00A47831 /* WalletViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5032DE171EB5FA8D00A47831 /* WalletViewCell.swift */; };
 		D1729D661E641609009973BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D651E641609009973BA /* AppDelegate.swift */; };
 		D1729D681E641609009973BA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D671E641609009973BA /* FirstViewController.swift */; };
 		D1729D6A1E641609009973BA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D691E641609009973BA /* SecondViewController.swift */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5015F3761EA1FA170057D3FC /* Wallet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Wallet.plist; sourceTree = "<group>"; };
+		5015F3781EA1FB7B0057D3FC /* WalletUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletUtility.swift; sourceTree = "<group>"; };
+		5015F3841EA200EA0057D3FC /* WalletModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
+		5032DE171EB5FA8D00A47831 /* WalletViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletViewCell.swift; sourceTree = "<group>"; };
 		D1729D621E641609009973BA /* SodexoWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SodexoWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1729D651E641609009973BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1729D671E641609009973BA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +114,10 @@
 				D1729D6E1E641609009973BA /* Assets.xcassets */,
 				D1729D701E641609009973BA /* LaunchScreen.storyboard */,
 				D1729D731E641609009973BA /* Info.plist */,
+				5015F3761EA1FA170057D3FC /* Wallet.plist */,
+				5015F3781EA1FB7B0057D3FC /* WalletUtility.swift */,
+				5015F3841EA200EA0057D3FC /* WalletModel.swift */,
+				5032DE171EB5FA8D00A47831 /* WalletViewCell.swift */,
 			);
 			path = SodexoWallet;
 			sourceTree = "<group>";
@@ -238,6 +250,7 @@
 				D1729D721E641609009973BA /* LaunchScreen.storyboard in Resources */,
 				D1729D6F1E641609009973BA /* Assets.xcassets in Resources */,
 				D1729D6D1E641609009973BA /* Main.storyboard in Resources */,
+				5015F3771EA1FA170057D3FC /* Wallet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5015F3851EA200EA0057D3FC /* WalletModel.swift in Sources */,
+				5032DE181EB5FA8D00A47831 /* WalletViewCell.swift in Sources */,
 				D1729D6A1E641609009973BA /* SecondViewController.swift in Sources */,
 				D1729D661E641609009973BA /* AppDelegate.swift in Sources */,
 				D1729D681E641609009973BA /* FirstViewController.swift in Sources */,
+				5015F3791EA1FB7B0057D3FC /* WalletUtility.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
