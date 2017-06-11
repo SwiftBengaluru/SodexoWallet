@@ -12,13 +12,18 @@ class FirstViewController: UIViewController {
     
     @IBOutlet weak var totalAmount: UILabel!
     @IBOutlet weak var walletTableView: UITableView!
-    
+     
+	 let couponArray:[String] = ["10", "20", "35", "50"]
+	 let couponCount :[String] = ["10", "2", "5", "5"]
+	 let couponAmount :[String] = ["100", "40", "35", "50"]
 	override func viewDidLoad() {
 		super.viewDidLoad()
         resetAllFields()
         
        // var walletAmount: [[String: AnyObject]]
-        
+        walletTableView.dataSource = self
+    walletTableView.delegate = self
+    walletTableView.register(UITableViewCell.self, forCellReuseIdentifier: "walletCell")
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -87,17 +92,19 @@ extension FirstViewController : UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
-                                                 for: indexPath) as! WalletViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "walletCell",
+                                                 for: indexPath) as! UITableViewCell
         
         //coupon name
         //coupon count
         //coupon amount
-         cell.couponName?.text = "Section \(indexPath.section) Row \(indexPath.row)"
-//        let row = indexPath.row
-//        cell.couponName.text = walletItems.couponName[row] //denomination
-//        cell.couponCount.text = walletItems.couponCount[row] //count
-//        cell.couponAmount.text = walletItems.couponAmount[row]
+       //  cell.couponName?.text = "Section \(indexPath.section) Row \(indexPath.row)"
+       // let row = indexPath.row
+		
+		cell.textLabel?.text = "Ramya"
+//        cell.couponName.text = couponArray[indexPath.item] //denomination
+//        cell.couponCount?.text = couponCount[indexPath.item] //count
+//        cell.couponAmount.text = couponAmount[indexPath.item]
         
         return cell
     }
