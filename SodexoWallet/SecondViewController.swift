@@ -7,19 +7,27 @@
 //
 
 import UIKit
+class PaymentConfirmation: UIAlertController
+{
+} 
+
 
 class SecondViewController: UIViewController {
 
 	//Debug placeholder coupon inventory until the actual inventory gets ready.
 	
+	@IBOutlet weak var CurrentWorthValueLabel: UILabel!
 	var CouponInventory: [UInt32:UInt32] = [:]
+	@IBOutlet weak var CurrentBalanceValueLabel: UILabel!
 	var redeemInventory: [UInt32:UInt32] = [:]
 
+	var PayAlert = UIAlertController()
 	
 	// debug ends
 	
 	var TotalAmount:UInt32 = 0;
-	@IBOutlet weak var CurrentWorthLabel: UILabel! // Displays the current remaining total amount calculated from all the coupons available for the user. This would help user guess how much more they could use from their coupons.
+	
+	// todo Displays the current remaining total amount calculated from all the coupons available for the user. This would help user guess how much more they could use from their coupons.
 		
 	
 	//This action function is needed
@@ -30,6 +38,10 @@ class SecondViewController: UIViewController {
 	@IBOutlet weak var AmountTextField: UITextField!
 	
 	@IBAction func PayButtonClick(_ sender: UIButton, forEvent event: UIEvent) {
+		self.present(PayAlert, animated: true, completion: nil)
+	}
+	
+	func InternalPay(){
 		for(key, value) in redeemInventory{
 			CouponInventory[key] = CouponInventory[key]! - value;
 			if CouponInventory[key]! == 0{
@@ -51,7 +63,7 @@ class SecondViewController: UIViewController {
 			Total += (key * value)
 		}
 		
-		CurrentWorthLabel.text = "Current worth: \(Total)"
+		CurrentWorthValueLabel.text = "\(Total)"
 	}
 	
 	@IBOutlet weak var OutputText: UILabel!	
@@ -87,7 +99,7 @@ class SecondViewController: UIViewController {
 		var Attempts = 0;
 		while(Total > 5 && Attempts < 5){
 			Attempts += 1
-			var SortedInventory = tempInventory.sorted(by: {(a,b) in 
+			let SortedInventory = tempInventory.sorted(by: {(a,b) in 
 									a.key > b.key; });
 
 			for(key, value) in SortedInventory{
@@ -180,6 +192,15 @@ class SecondViewController: UIViewController {
 		debugAddCoupon(50, CouponCount: 4);
 		displayCurrentWorth() // Display remaining amount so user can make educated guess if they want.
 		
+		//Alert box
+		PayAlert = UIAlertController(title: "Are you sure?", message: "Proceed to pay?", preferredStyle: UIAlertControllerStyle.alert)
+		let PayAlertAction = UIAlertAction(title: "Pay", style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) -> Void in 
+		self.InternalPay() })
+		let CancelAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil)
+		PayAlert.addAction(PayAlertAction)
+		PayAlert.addAction(CancelAlertAction)
+		
+		
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -195,6 +216,11 @@ class SecondViewController: UIViewController {
 		else{
 			CouponInventory[CouponValue] = CouponCount;
 		}
+	}
+	
+	// Called when touches begin in the view
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		self.view.endEditing(true);
 	}
 
 }
