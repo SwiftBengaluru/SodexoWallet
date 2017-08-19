@@ -17,11 +17,11 @@ class SecondViewController: UIViewController {
 	//Debug placeholder coupon inventory until the actual inventory gets ready.
 	
 	@IBOutlet weak var CurrentWorthValueLabel: UILabel!
-	var CouponInventory: [UInt32:UInt32] = [:]
 	@IBOutlet weak var CurrentBalanceValueLabel: UILabel!
+	var CouponInventory: [UInt32:UInt32] = [:]
 	var redeemInventory: [UInt32:UInt32] = [:]
 
-	var PayAlert = UIAlertController()
+		var PayAlert = UIAlertController()
 	
 	// debug ends
 	
@@ -54,7 +54,15 @@ class SecondViewController: UIViewController {
 		OutputText.text = ""
 		redeemInventory = [:]
 		displayCurrentWorth() // Recalculate total remaining amount and display to user.
+		
+		displayPaidNotification();
 	}
+	
+	func displayPaidNotification()
+	{
+		//let notification = UILocalN
+	}
+	
 	
 	func displayCurrentWorth()
 	{
@@ -183,6 +191,11 @@ class SecondViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		self.view.backgroundColor = UIColor(patternImage: UIImage(named: "sodexo-bg1.jpg")!)
+		self.CurrentBalanceValueLabel.textColor? = UIColor.white
+		self.CurrentWorthValueLabel.textColor? = UIColor.white
+		self.OutputText.textColor? = UIColor.white
+		
 		//debug
 		debugAddCoupon(25, CouponCount: 1);
 		debugAddCoupon(5, CouponCount: 5);
