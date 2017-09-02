@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D15BB1D41F5388C000936B80 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15BB1D31F5388C000936B80 /* LoginVC.swift */; };
+		D15BB1D61F538E2C00936B80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D15BB1D51F538E2C00936B80 /* Assets.xcassets */; };
+		D15BB1D91F53ADF300936B80 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D15BB1D81F53ADF300936B80 /* Security.framework */; };
 		D1729D661E641609009973BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D651E641609009973BA /* AppDelegate.swift */; };
 		D1729D681E641609009973BA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D671E641609009973BA /* FirstViewController.swift */; };
 		D1729D6A1E641609009973BA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D691E641609009973BA /* SecondViewController.swift */; };
 		D1729D6D1E641609009973BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1729D6B1E641609009973BA /* Main.storyboard */; };
-		D1729D6F1E641609009973BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1729D6E1E641609009973BA /* Assets.xcassets */; };
 		D1729D721E641609009973BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1729D701E641609009973BA /* LaunchScreen.storyboard */; };
 		D1729D7D1E64160A009973BA /* SodexoWalletTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D7C1E64160A009973BA /* SodexoWalletTests.swift */; };
 		D1729D881E64160A009973BA /* SodexoWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1729D871E64160A009973BA /* SodexoWalletUITests.swift */; };
@@ -35,12 +37,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D15BB1D31F5388C000936B80 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		D15BB1D51F538E2C00936B80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D15BB1D81F53ADF300936B80 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		D1729D621E641609009973BA /* SodexoWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SodexoWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1729D651E641609009973BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1729D671E641609009973BA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		D1729D691E641609009973BA /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D1729D6C1E641609009973BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D1729D6E1E641609009973BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1729D711E641609009973BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1729D731E641609009973BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1729D781E64160A009973BA /* SodexoWalletTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SodexoWalletTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D15BB1D91F53ADF300936B80 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D15BB1D71F53ADF300936B80 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D15BB1D81F53ADF300936B80 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D1729D591E641609009973BA = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +96,7 @@
 				D1729D7B1E64160A009973BA /* SodexoWalletTests */,
 				D1729D861E64160A009973BA /* SodexoWalletUITests */,
 				D1729D631E641609009973BA /* Products */,
+				D15BB1D71F53ADF300936B80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,11 +113,12 @@
 		D1729D641E641609009973BA /* SodexoWallet */ = {
 			isa = PBXGroup;
 			children = (
+				D15BB1D51F538E2C00936B80 /* Assets.xcassets */,
 				D1729D651E641609009973BA /* AppDelegate.swift */,
+				D15BB1D31F5388C000936B80 /* LoginVC.swift */,
 				D1729D671E641609009973BA /* FirstViewController.swift */,
 				D1729D691E641609009973BA /* SecondViewController.swift */,
 				D1729D6B1E641609009973BA /* Main.storyboard */,
-				D1729D6E1E641609009973BA /* Assets.xcassets */,
 				D1729D701E641609009973BA /* LaunchScreen.storyboard */,
 				D1729D731E641609009973BA /* Info.plist */,
 			);
@@ -236,7 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1729D721E641609009973BA /* LaunchScreen.storyboard in Resources */,
-				D1729D6F1E641609009973BA /* Assets.xcassets in Resources */,
+				D15BB1D61F538E2C00936B80 /* Assets.xcassets in Resources */,
 				D1729D6D1E641609009973BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +279,7 @@
 			files = (
 				D1729D6A1E641609009973BA /* SecondViewController.swift in Sources */,
 				D1729D661E641609009973BA /* AppDelegate.swift in Sources */,
+				D15BB1D41F5388C000936B80 /* LoginVC.swift in Sources */,
 				D1729D681E641609009973BA /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -509,6 +525,7 @@
 				D1729D8E1E64160A009973BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D1729D8F1E64160A009973BA /* Build configuration list for PBXNativeTarget "SodexoWalletTests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +534,7 @@
 				D1729D911E64160A009973BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D1729D921E64160A009973BA /* Build configuration list for PBXNativeTarget "SodexoWalletUITests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +543,7 @@
 				D1729D941E64160A009973BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

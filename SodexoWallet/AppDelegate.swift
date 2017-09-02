@@ -16,6 +16,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+	/*	self.window = UIWindow(frame: UIScreen.main.bounds)
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let initialViewController = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+
+		self.window?.rootViewController = initialViewController
+		self.window?.makeKeyAndVisible()
+		
+		*/
+		// if not logged in
+		showLoginScreen();
 		return true
 	}
 
@@ -40,7 +50,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func applicationWillTerminate(_ application: UIApplication) {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
+	
+	//Private functions
+	
+	func showLoginScreen(){
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let loginViewCtrl = storyboard.instantiateViewController(withIdentifier: "LoginVC")
+		self.window?.makeKeyAndVisible()// step 1
+		self.window?.rootViewController?.present(loginViewCtrl, animated: true, completion: nil)// step 2
+	}
 
-
+	func logout(){
+		//userdata-clear
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		let mainTab = storyboard.instantiateViewController(withIdentifier: "MainTabVC") 
+		self.window?.rootViewController = mainTab
+		showLoginScreen();
+	}
 }
 

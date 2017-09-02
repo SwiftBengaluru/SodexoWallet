@@ -18,10 +18,11 @@ class SecondViewController: UIViewController {
 	
 	@IBOutlet weak var CurrentWorthValueLabel: UILabel!
 	@IBOutlet weak var CurrentBalanceValueLabel: UILabel!
+	
 	var CouponInventory: [UInt32:UInt32] = [:]
 	var redeemInventory: [UInt32:UInt32] = [:]
 
-		var PayAlert = UIAlertController()
+	var PayAlert = UIAlertController()
 	
 	// debug ends
 	
